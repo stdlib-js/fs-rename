@@ -27,7 +27,7 @@ proc.argv[ 2 ] = resolve( __dirname, 'fixtures', 'file.txt' );
 proc.argv[ 3 ] = resolve( __dirname, 'fixtures', 'tmp.txt' );
 
 proxyquire( fpath, {
-	'@stdlib/process/read-stdin': stdin,
+	'@stdlib/process-read-stdin': stdin,
 	'./../lib': rename
 });
 
