@@ -1,0 +1,39 @@
+{
+  "name": "@stdlib/fs-rename",
+  "version": "0.0.0",
+  "description": "Rename a file.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./mod.js",
+  "homepage": "https://stdlib.io",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stdlib-js/fs-rename.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stdlib-js/stdlib/issues"
+  },
+  "keywords": [
+    "stdlib",
+    "stdfs",
+    "fs",
+    "rename",
+    "renamesync",
+    "path",
+    "async",
+    "sync",
+    "file",
+    "delete",
+    "remove",
+    "rm",
+    "del",
+    "change",
+    "move",
+    "relocate",
+    "filesystem"
+  ],
+  "funding": {
+    "type": "patreon",
+    "url": "https://www.patreon.com/athan"
+  }
+}
