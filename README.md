@@ -37,6 +37,7 @@ Alternatively,
 -   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm` branch][esm-url].
 -   If you are using Deno, visit the [`deno` branch][deno-url].
 -   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd` branch][umd-url].
+-   To use as a general utility for the command line, install the corresponding [CLI package][cli-section] globally.
 
 The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
 
@@ -197,10 +198,10 @@ console.log( exists( dest ) );
 
 ## Installation
 
-To use the module as a general utility, install the module globally
+To use as a general utility, install the CLI package globally
 
 ```bash
-npm install -g @stdlib/fs-rename
+npm install -g @stdlib/fs-rename-cli
 ```
 
 </section>
@@ -261,10 +262,10 @@ $ rename ./examples/fixtures/file.txt ./examples/fixtures/tmp.txt
 
 ## See Also
 
--   <span class="package-name">[`@stdlib/fs/exists`][@stdlib/fs/exists]</span><span class="delimiter">: </span><span class="description">test whether a path exists on the filesystem.</span>
--   <span class="package-name">[`@stdlib/fs/read-file`][@stdlib/fs/read-file]</span><span class="delimiter">: </span><span class="description">read the entire contents of a file.</span>
--   <span class="package-name">[`@stdlib/fs/write-file`][@stdlib/fs/write-file]</span><span class="delimiter">: </span><span class="description">write data to a file.</span>
--   <span class="package-name">[`@stdlib/fs/unlink`][@stdlib/fs/unlink]</span><span class="delimiter">: </span><span class="description">remove a directory entry.</span>
+-   <span class="package-name">[`@stdlib/fs-exists`][@stdlib/fs/exists]</span><span class="delimiter">: </span><span class="description">test whether a path exists on the filesystem.</span>
+-   <span class="package-name">[`@stdlib/fs-read-file`][@stdlib/fs/read-file]</span><span class="delimiter">: </span><span class="description">read the entire contents of a file.</span>
+-   <span class="package-name">[`@stdlib/fs-write-file`][@stdlib/fs/write-file]</span><span class="delimiter">: </span><span class="description">write data to a file.</span>
+-   <span class="package-name">[`@stdlib/fs-unlink`][@stdlib/fs/unlink]</span><span class="delimiter">: </span><span class="description">remove a directory entry.</span>
 
 </section>
 
@@ -328,6 +329,10 @@ Copyright &copy; 2016-2023. The Stdlib [Authors][stdlib-authors].
 [stdlib]: https://github.com/stdlib-js/stdlib
 
 [stdlib-authors]: https://github.com/stdlib-js/stdlib/graphs/contributors
+
+[cli-section]: https://github.com/stdlib-js/fs-rename#cli
+[cli-url]: https://github.com/stdlib-js/fs-rename/tree/cli
+[@stdlib/fs-rename]: https://github.com/stdlib-js/fs-rename/tree/main
 
 [umd]: https://github.com/umdjs/umd
 [es-module]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
