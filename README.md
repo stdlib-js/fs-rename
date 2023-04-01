@@ -24,31 +24,20 @@ limitations under the License.
 
 > Rename a file.
 
-<section class="installation">
 
-## Installation
-
-```bash
-npm install @stdlib/fs-rename
-```
-
-Alternatively,
-
--   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm` branch][esm-url].
--   If you are using Deno, visit the [`deno` branch][deno-url].
--   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd` branch][umd-url].
--   To use as a general utility for the command line, install the corresponding [CLI package][cli-section] globally.
-
-The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
-
-</section>
 
 <section class="usage">
 
 ## Usage
 
 ```javascript
-var rename = require( '@stdlib/fs-rename' );
+import rename from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@esm/index.mjs';
+```
+
+You can also import the following named exports from the package:
+
+```javascript
+import { sync } from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@esm/index.mjs';
 ```
 
 #### rename( oldPath, newPath, clbk )
@@ -130,7 +119,7 @@ if ( err instanceof Error ) {
     <!-- run-disable -->
 
     ```javascript
-    var rename = require( '@stdlib/fs-rename' );
+    import rename from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@esm/index.mjs';
 
     // Explicitly handle the error...
     var err = rename.sync( '/path/to/file.txt', '/path/to/tmp.txt' );
@@ -150,13 +139,18 @@ if ( err instanceof Error ) {
 
 <!-- eslint no-undef: "error" -->
 
-```javascript
+```html
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<script type="module">
+
 var join = require( 'path' ).join;
-var readFile = require( '@stdlib/fs-read-file' ).sync;
-var writeFile = require( '@stdlib/fs-write-file' ).sync;
-var exists = require( '@stdlib/fs-exists' ).sync;
-var unlink = require( '@stdlib/fs-unlink' ).sync;
-var rename = require( '@stdlib/fs-rename' ).sync;
+var readFile = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-read-file' ).sync;
+var writeFile = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-write-file' ).sync;
+var exists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-exists' ).sync;
+var unlink = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-unlink' ).sync;
+var rename = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename' ).sync;
 
 var src = join( __dirname, 'examples', 'fixtures', 'file.txt' );
 var tmp = join( __dirname, 'examples', 'tmp.txt' );
@@ -182,77 +176,17 @@ unlink( dest );
 // Confirm that the temporary file no longer exists:
 console.log( exists( dest ) );
 // => false
+
+</script>
+</body>
+</html>
 ```
 
 </section>
 
 <!-- /.examples -->
 
-* * *
 
-<section class="cli">
-
-## CLI
-
-<section class="installation">
-
-## Installation
-
-To use as a general utility, install the CLI package globally
-
-```bash
-npm install -g @stdlib/fs-rename-cli
-```
-
-</section>
-
-<!-- CLI usage documentation. -->
-
-<section class="usage">
-
-### Usage
-
-```text
-Usage: rename [options] <old_path> <new_path>
-
-Options:
-
-  -h,    --help                Print this message.
-  -V,    --version             Print the package version.
-```
-
-</section>
-
-<!-- /.usage -->
-
-<section class="notes">
-
-### Notes
-
--   Relative paths are resolved relative to the current working directory.
--   Errors are written to `stderr`.
-
-</section>
-
-<!-- /.notes -->
-
-<section class="examples">
-
-### Examples
-
-<!-- run-disable -->
-
-```bash
-$ rename ./examples/fixtures/file.txt ./examples/fixtures/tmp.txt
-```
-
-</section>
-
-<!-- /.examples -->
-
-</section>
-
-<!-- /.cli -->
 
 <!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
 
@@ -280,7 +214,7 @@ $ rename ./examples/fixtures/file.txt ./examples/fixtures/tmp.txt
 
 ## Notice
 
-This package is part of [stdlib][stdlib], a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
+This package is part of [stdlib][stdlib], a standard library with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
 
 For more information on the project, filing bug reports and feature requests, and guidance on how to develop [stdlib][stdlib], see the main project [repository][stdlib].
 
@@ -348,13 +282,13 @@ Copyright &copy; 2016-2023. The Stdlib [Authors][stdlib-authors].
 
 <!-- <related-links> -->
 
-[@stdlib/fs/exists]: https://github.com/stdlib-js/fs-exists
+[@stdlib/fs/exists]: https://github.com/stdlib-js/fs-exists/tree/esm
 
-[@stdlib/fs/read-file]: https://github.com/stdlib-js/fs-read-file
+[@stdlib/fs/read-file]: https://github.com/stdlib-js/fs-read-file/tree/esm
 
-[@stdlib/fs/write-file]: https://github.com/stdlib-js/fs-write-file
+[@stdlib/fs/write-file]: https://github.com/stdlib-js/fs-write-file/tree/esm
 
-[@stdlib/fs/unlink]: https://github.com/stdlib-js/fs-unlink
+[@stdlib/fs/unlink]: https://github.com/stdlib-js/fs-unlink/tree/esm
 
 <!-- </related-links> -->
 
