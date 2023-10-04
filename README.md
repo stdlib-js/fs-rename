@@ -42,13 +42,13 @@ limitations under the License.
 ## Usage
 
 ```javascript
-import rename from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@esm/index.mjs';
+import rename from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@v0.1.1-esm/index.mjs';
 ```
 
 You can also import the following named exports from the package:
 
 ```javascript
-import { sync } from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@esm/index.mjs';
+import { sync } from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@v0.1.1-esm/index.mjs';
 ```
 
 #### rename( oldPath, newPath, clbk )
@@ -130,7 +130,7 @@ if ( err instanceof Error ) {
     <!-- run-disable -->
 
     ```javascript
-    import rename from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@esm/index.mjs';
+    import rename from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@v0.1.1-esm/index.mjs';
 
     // Explicitly handle the error...
     var err = rename.sync( '/path/to/file.txt', '/path/to/tmp.txt' );
