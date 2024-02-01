@@ -35,19 +35,177 @@ limitations under the License.
 
 > Rename a file.
 
+<section class="installation">
 
+## Installation
 
+```bash
+npm install @stdlib/fs-rename
+```
 
+Alternatively,
 
+-   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
+-   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
+-   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
+-   To use as a general utility for the command line, install the corresponding [CLI package][cli-section] globally.
 
+The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
 
+To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
 
+</section>
 
+<section class="usage">
 
+## Usage
+
+```javascript
+var rename = require( '@stdlib/fs-rename' );
+```
+
+#### rename( oldPath, newPath, clbk )
+
+Asynchronously renames a file specified by `oldPath` to `newPath`.
+
+<!-- run-disable -->
+
+```javascript
+var join = require( 'path' ).join;
+var oldPath = join( __dirname, 'examples', 'fixtures', 'file.txt' );
+var newPath = join( __dirname, 'examples', 'fixtures', 'tmp.txt' );
+
+rename( oldPath, newPath, done );
+
+function done( error ) {
+    if ( error ) {
+        throw error;
+    }
+}
+```
+
+#### rename.sync( oldPath, newPath )
+
+Synchronously renames a file specified by `oldPath` to `newPath`.
+
+<!-- run-disable -->
+
+```javascript
+var join = require( 'path' ).join;
+var oldPath = join( __dirname, 'examples', 'fixtures', 'file.txt' );
+var newPath = join( __dirname, 'examples', 'fixtures', 'tmp.txt' );
+
+var err = rename.sync( oldPath, newPath );
+if ( err instanceof Error ) {
+    throw err;
+}
+```
+
+</section>
+
+<!-- /.usage -->
+
+<section class="notes">
+
+## Notes
+
+-   `oldPath` can specify a directory. In this case, `newPath` must either **not** exist, or it must specify an **empty** directory.
+
+-   `oldPath` should **not** name an ancestor directory of `newPath`.
+
+-   If `oldPath` points to the pathname of a file that is **not** a directory, `newPath` should **not** point to the pathname of a directory.
+
+-   Write access permission is **required** for both the directory containing `oldPath` and the directory containing `newPath`.
+
+-   If the link named by `newPath` exists, `newPath` is removed and `oldPath` is renamed to `newPath`. The link named by `newPath` will remain visible to other threads throughout the renaming operation and refer to either the file referred to by `newPath` or to the file referred to by `oldPath` before the operation began.
+
+-   If `oldPath` and `newPath` resolve to either the same existing directory entry or to different directory entries for the same existing file, no action is taken, and no error is returned.
+
+-   If `oldPath` points to a pathname of a symbolic link, the symbolic link is renamed. If the `newPath` points to a pathname of a symbolic link, the symbolic link is removed.
+
+-   If a link named by `newPath` exists and the file's link count becomes `0` when it is removed and no process has the file open, the space occupied by the file is freed and the file is no longer accessible. If one or more processes have the file open when the last link is removed, the link is removed before the function returns, but the removal of file contents is postponed until all references to the file are closed.
+
+-   The difference between `rename.sync` and [`fs.rename()`][node-fs] is that [`fs.renameSync()`][node-fs] will throw if an `error` is encountered (e.g., if given a non-existent path) and this API will return an `error`. Hence, the following anti-pattern
+
+    <!-- run-disable -->
+
+    ```javascript
+    var fs = require( 'fs' );
+
+    // Check for path existence to prevent an error being thrown...
+    if ( fs.existsSync( '/path/to/file.txt' ) ) {
+        fs.renameSync( '/path/to/file.txt', '/path/to/tmp.txt' );
+    }
+    ```
+
+    can be replaced by an approach which addresses existence via `error` handling.
+
+    <!-- run-disable -->
+
+    ```javascript
+    var rename = require( '@stdlib/fs-rename' );
+
+    // Explicitly handle the error...
+    var err = rename.sync( '/path/to/file.txt', '/path/to/tmp.txt' );
+    if ( err instanceof Error ) {
+        // You choose what to do...
+        throw err;
+    }
+    ```
+
+</section>
+
+<!-- /.notes -->
+
+<section class="examples">
+
+## Examples
+
+<!-- eslint no-undef: "error" -->
+
+```javascript
+var join = require( 'path' ).join;
+var readFile = require( '@stdlib/fs-read-file' ).sync;
+var writeFile = require( '@stdlib/fs-write-file' ).sync;
+var exists = require( '@stdlib/fs-exists' ).sync;
+var unlink = require( '@stdlib/fs-unlink' ).sync;
+var rename = require( '@stdlib/fs-rename' ).sync;
+
+var src = join( __dirname, 'examples', 'fixtures', 'file.txt' );
+var tmp = join( __dirname, 'examples', 'tmp.txt' );
+var dest = join( __dirname, 'examples', 'foo.txt' );
+
+// Create a temporary file:
+writeFile( tmp, readFile( src ) );
+
+// Confirm that the temporary file exists:
+console.log( exists( tmp ) );
+// => true
+
+// Rename the temporary file:
+rename( tmp, dest );
+
+// Confirm that the renamed temporary file exists:
+console.log( exists( dest ) );
+// => true
+
+// Remove the temporary file:
+unlink( dest );
+
+// Confirm that the temporary file no longer exists:
+console.log( exists( dest ) );
+// => false
+```
+
+</section>
+
+<!-- /.examples -->
+
+* * *
 
 <section class="cli">
 
-
+## CLI
 
 <section class="installation">
 
@@ -65,7 +223,7 @@ npm install -g @stdlib/fs-rename-cli
 
 <section class="usage">
 
-## Usage
+### Usage
 
 ```text
 Usage: rename [options] <old_path> <new_path>
@@ -82,7 +240,7 @@ Options:
 
 <section class="notes">
 
-## Notes
+### Notes
 
 -   Relative paths are resolved relative to the current working directory.
 -   Errors are written to `stderr`.
@@ -93,7 +251,7 @@ Options:
 
 <section class="examples">
 
-## Examples
+### Examples
 
 <!-- run-disable -->
 
@@ -113,9 +271,10 @@ $ rename ./examples/fixtures/file.txt ./examples/fixtures/tmp.txt
 
 <section class="related">
 
+* * *
+
 ## See Also
 
--   <span class="package-name">[`@stdlib/fs-rename`][@stdlib/fs-rename]</span><span class="delimiter">: </span><span class="description">rename a file.</span>
 -   <span class="package-name">[`@stdlib/fs-exists`][@stdlib/fs/exists]</span><span class="delimiter">: </span><span class="description">test whether a path exists on the filesystem.</span>
 -   <span class="package-name">[`@stdlib/fs-read-file`][@stdlib/fs/read-file]</span><span class="delimiter">: </span><span class="description">read the entire contents of a file.</span>
 -   <span class="package-name">[`@stdlib/fs-write-file`][@stdlib/fs/write-file]</span><span class="delimiter">: </span><span class="description">write data to a file.</span>
@@ -138,7 +297,7 @@ This package is part of [stdlib][stdlib], a standard library for JavaScript and 
 
 For more information on the project, filing bug reports and feature requests, and guidance on how to develop [stdlib][stdlib], see the main project [repository][stdlib].
 
-### Community
+#### Community
 
 [![Chat][chat-image]][chat-url]
 
@@ -161,8 +320,8 @@ Copyright &copy; 2016-2024. The Stdlib [Authors][stdlib-authors].
 
 <section class="links">
 
-[npm-image]: http://img.shields.io/npm/v/@stdlib/fs-rename-cli.svg
-[npm-url]: https://npmjs.org/package/@stdlib/fs-rename-cli
+[npm-image]: http://img.shields.io/npm/v/@stdlib/fs-rename.svg
+[npm-url]: https://npmjs.org/package/@stdlib/fs-rename
 
 [test-image]: https://github.com/stdlib-js/fs-rename/actions/workflows/test.yml/badge.svg?branch=main
 [test-url]: https://github.com/stdlib-js/fs-rename/actions/workflows/test.yml?query=branch:main
@@ -192,8 +351,11 @@ Copyright &copy; 2016-2024. The Stdlib [Authors][stdlib-authors].
 [es-module]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
 
 [deno-url]: https://github.com/stdlib-js/fs-rename/tree/deno
+[deno-readme]: https://github.com/stdlib-js/fs-rename/blob/deno/README.md
 [umd-url]: https://github.com/stdlib-js/fs-rename/tree/umd
+[umd-readme]: https://github.com/stdlib-js/fs-rename/blob/umd/README.md
 [esm-url]: https://github.com/stdlib-js/fs-rename/tree/esm
+[esm-readme]: https://github.com/stdlib-js/fs-rename/blob/esm/README.md
 [branches-url]: https://github.com/stdlib-js/fs-rename/blob/main/branches.md
 
 [stdlib-license]: https://raw.githubusercontent.com/stdlib-js/fs-rename/main/LICENSE
