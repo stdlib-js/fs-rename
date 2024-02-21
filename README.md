@@ -42,13 +42,18 @@ limitations under the License.
 ## Usage
 
 ```javascript
+import rename from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@deno/mod.js';
+```
+The previous example will load the latest bundled code from the deno branch. Alternatively, you may load a specific version by loading the file from one of the [tagged bundles](https://github.com/stdlib-js/fs-rename/tags). For example,
+
+```javascript
 import rename from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@v0.2.1-deno/mod.js';
 ```
 
 You can also import the following named exports from the package:
 
 ```javascript
-import { sync } from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@v0.2.1-deno/mod.js';
+import { sync } from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@deno/mod.js';
 ```
 
 #### rename( oldPath, newPath, clbk )
@@ -130,7 +135,7 @@ if ( err instanceof Error ) {
     <!-- run-disable -->
 
     ```javascript
-    import rename from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@v0.2.1-deno/mod.js';
+    import rename from 'https://cdn.jsdelivr.net/gh/stdlib-js/fs-rename@deno/mod.js';
 
     // Explicitly handle the error...
     var err = rename.sync( '/path/to/file.txt', '/path/to/tmp.txt' );
